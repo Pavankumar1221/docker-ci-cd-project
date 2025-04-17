@@ -11,16 +11,16 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3  # Updated to the latest version
+        uses: actions/checkout@v3  # Updated to v3
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2  # Updated to the latest version
+        uses: docker/setup-buildx-action@v2  # Updated to v2
 
       - name: Cache Docker layers
-        uses: actions/cache@v3  # Updated to the latest version
+        uses: actions/cache@v2
         with:
           path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ github.run_id }}  # Changed key to avoid cache issues
+          key: ${{ runner.os }}-buildx-${{ github.sha }}-${{ hashFiles('**/Dockerfile') }}  # Updated to use Dockerfile hash
           restore-keys: |
             ${{ runner.os }}-buildx-
 
