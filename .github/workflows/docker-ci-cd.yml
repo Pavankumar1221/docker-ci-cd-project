@@ -33,8 +33,7 @@ jobs:
           docker run my-docker-image npm test
 
       - name: Push Docker image to Docker Hub
-  run: |
-    echo "${{ secrets.DOCKER_PASSWORD }}" | docker login --username "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-    docker tag my-docker-image ${{ secrets.DOCKER_USERNAME }}/my-docker-image:latest
-    docker push ${{ secrets.DOCKER_USERNAME }}/my-docker-image:latest
-
+        run: |
+          echo "${{ secrets.DOCKER_PASSWORD }}" | docker login --username "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+          docker tag my-docker-image ${{ secrets.DOCKER_USERNAME }}/my-docker-image:latest
+          docker push ${{ secrets.DOCKER_USERNAME }}/my-docker-image:latest
